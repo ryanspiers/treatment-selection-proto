@@ -43,7 +43,7 @@ export default function ProductCard({ product, onRetake }: ProductCardProps) {
         )}
         <button
           onClick={onRetake}
-          className="w-full py-4 rounded-xl border-2 border-stone-200 text-stone-700 text-base font-semibold transition-colors hover:border-stone-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-800 focus-visible:ring-offset-2"
+          className="w-full py-4 rounded-xl border-2 border-stone-200 text-stone-700 text-base font-semibold cursor-pointer transition-colors hover:border-stone-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-800 focus-visible:ring-offset-2"
         >
           Retake quiz
         </button>

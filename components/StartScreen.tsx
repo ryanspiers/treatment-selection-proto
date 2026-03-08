@@ -20,7 +20,7 @@ export default function StartScreen({ onStart }: StartScreenProps) {
 
       <button
         onClick={onStart}
-        className="w-full py-4 rounded-xl bg-stone-800 text-white text-base font-semibold transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-800 focus-visible:ring-offset-2"
+        className="w-full py-4 rounded-xl bg-stone-800 text-white text-base font-semibold cursor-pointer transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-800 focus-visible:ring-offset-2"
       >
         Start quiz
       </button>

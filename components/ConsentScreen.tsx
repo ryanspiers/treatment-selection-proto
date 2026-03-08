@@ -4,7 +4,7 @@ interface ConsentScreenProps {
 
 export default function ConsentScreen({ onAgree }: ConsentScreenProps) {
   return (
-    <div className="flex flex-col flex-1 px-4 pt-6 pb-8 overflow-y-auto">
+    <div className="flex flex-col flex-1 px-4 pt-6 pb-8 overflow-y-auto max-w-[480px] mx-auto w-full">
       {/* Heading */}
       <h2
         className="text-[24px] font-semibold leading-8 text-[#07073d] mb-3"
@@ -102,7 +102,7 @@ export default function ConsentScreen({ onAgree }: ConsentScreenProps) {
 
         <button
           onClick={onAgree}
-          className="w-full flex items-center justify-center gap-2 py-4 pl-6 pr-4 rounded-[40px] bg-[#07073d] text-white font-semibold text-[16px] leading-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#07073d] focus-visible:ring-offset-2"
+          className="w-full flex items-center justify-center gap-2 py-4 pl-6 pr-4 rounded-[40px] bg-[#07073d] text-white font-semibold text-[16px] leading-4 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#07073d] focus-visible:ring-offset-2"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           Agree and continue

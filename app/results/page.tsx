@@ -18,6 +18,8 @@ export default function ResultsPage() {
   }
 
   return (
-    <ProductCard product={recommendation} onRetake={handleRetake} />
+    <div className="max-w-[480px] mx-auto w-full px-5 py-8">
+      <ProductCard product={recommendation} onRetake={handleRetake} />
+    </div>
   );
 }

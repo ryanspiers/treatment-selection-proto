@@ -15,7 +15,7 @@ export default function ChoiceButton({
     <button
       onClick={onClick}
       aria-pressed={isSelected}
-      className={`w-full flex items-center gap-4 px-4 py-5 rounded text-left transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#086a74] focus-visible:ring-offset-2
+      className={`w-full flex items-center gap-4 px-4 py-5 rounded text-left cursor-pointer transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#086a74] focus-visible:ring-offset-2
         ${
           isSelected
             ? "bg-[#f1f8fc] border-2 border-[#086a74]"

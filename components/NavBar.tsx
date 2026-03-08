@@ -5,11 +5,12 @@ interface NavBarProps {
 
 export default function NavBar({ onBack, title }: NavBarProps) {
   return (
-    <div className="sticky top-0 z-10 bg-white w-full h-[60px] flex items-center px-4 gap-4">
+    <div className="sticky top-0 z-10 bg-white w-full h-[60px]">
+      <div className="max-w-[480px] mx-auto h-full flex items-center px-4 gap-4">
       <button
         onClick={onBack}
         aria-label="Go back"
-        className="shrink-0 w-6 h-6 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#086a74] rounded"
+        className="shrink-0 w-6 h-6 flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#086a74] rounded"
       >
         <svg
           width="24"
@@ -34,6 +35,7 @@ export default function NavBar({ onBack, title }: NavBarProps) {
       >
         {title}
       </span>
+      </div>
     </div>
   );
 }

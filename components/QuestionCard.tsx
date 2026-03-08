@@ -17,7 +17,7 @@ export default function QuestionCard({
   isLast,
 }: QuestionCardProps) {
   return (
-    <div className="flex flex-col flex-1 px-4 pt-6 pb-8">
+    <div className="flex flex-col flex-1 px-4 pt-6 pb-8 max-w-[480px] mx-auto w-full">
       {/* Question text */}
       <h2
         className="text-[24px] font-semibold leading-8 text-[#07073d] mb-6"
@@ -43,7 +43,7 @@ export default function QuestionCard({
         <button
           onClick={onNext}
           disabled={!selectedChoiceTag}
-          className="w-full py-4 px-6 rounded-[40px] bg-[#07073d] text-white font-semibold text-[16px] leading-4 disabled:opacity-40 disabled:cursor-not-allowed transition-opacity duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#07073d] focus-visible:ring-offset-2"
+          className="w-full py-4 px-6 rounded-[40px] bg-[#07073d] text-white font-semibold text-[16px] leading-4 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed transition-opacity duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#07073d] focus-visible:ring-offset-2"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           {isLast ? "See my recommendation" : "Continue"}
