@@ -46,7 +46,7 @@ export default function QuestionCard({
           className="w-full py-4 px-6 rounded-[40px] bg-[#07073d] text-white font-semibold text-[16px] leading-4 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed transition-opacity duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#07073d] focus-visible:ring-offset-2"
           style={{ fontFamily: "var(--font-inter)" }}
         >
-          {isLast ? "See my recommendation" : "Continue"}
+          Continue
         </button>
       </div>
     </div>
