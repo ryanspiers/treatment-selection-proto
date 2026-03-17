@@ -28,7 +28,7 @@ const consentGroups: ConsentGroup[] = [
     cards: [
       {
         title: "We will access your medical records",
-        body: "Phlo contacting my GP and accessing my Summary Care Record (or other medical records if required) to verify my medical history and medication eligibility, and to inform my GP of any treatment received.",
+        body: "Phlo will contact your GP and access your Summary Care Record to verify your medical history and confirm your eligibility \u2014 and to keep your GP informed of any treatment you receive with us.",
         iconBg: "#e9eefa",
         icon: (
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -52,7 +52,7 @@ const consentGroups: ConsentGroup[] = [
     cards: [
       {
         title: "You understand the risks",
-        body: "I confirm I have provided honest and accurate information and my order is subject to clinical approval by the clinical team.",
+        body: "We\u2019ll provide a patient information leaflet covering all known risks and side effects. If you experience severe symptoms, you agree to pause treatment and contact our clinical team immediately.",
         iconBg: "#e2fbf0",
         icon: (
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -69,7 +69,7 @@ const consentGroups: ConsentGroup[] = [
       },
       {
         title: "Take as directed \u2013 don\u2019t mix doses",
-        body: "I confirm that I will read the patient information leaflet, understand the potential risks and side effects and allergies of treatment and agree to discontinue treatment and seek medical attention if severe symptoms occur, and to report all side effects to the Phlo clinical team.\n\nI confirm to take the medicine as directed and follow appropriate storage instructions that come with it.",
+        body: "Your treatment must be taken exactly as directed and stored correctly. You must not combine or mix dose strengths to reach a different weekly amount \u2014 this can cause dangerous dosing errors and is not clinically approved.",
         iconBg: "#fef3e0",
         icon: (
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -89,7 +89,7 @@ const consentGroups: ConsentGroup[] = [
     cards: [
       {
         title: "You met previous treatment criteria",
-        body: "If transferring to our service, I confirm I previously met criteria for initiation of treatment and I wish to continue as part of my weight loss / maintenance treatment journey.",
+        body: "As a transfer patient, you confirm you previously met the eligibility criteria for this treatment and are continuing an existing weight loss or maintenance programme.",
         iconBg: "#def4f7",
         icon: (
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -145,7 +145,7 @@ export default function ConsentScreen({ onAgree }: ConsentScreenProps) {
         className="text-[24px] font-semibold leading-8 text-[#07073d] mb-3"
         style={{ fontFamily: "var(--font-work-sans)" }}
       >
-        Before we continue
+        Before we continue...
       </h2>
       <p
         className="text-[14px] leading-[22px] text-[#2f345f] mb-6"
