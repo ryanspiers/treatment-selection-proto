@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface ConsentScreenProps {
   onAgree: () => void;
@@ -110,6 +110,29 @@ const consentGroups: ConsentGroup[] = [
 
 export default function ConsentScreen({ onAgree }: ConsentScreenProps) {
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+  const [overflows, setOverflows] = useState<Record<string, boolean>>({});
+  const textRefs = useRef<Record<string, HTMLParagraphElement | null>>({});
+
+  useEffect(() => {
+    const measure = () => {
+      const result: Record<string, boolean> = {};
+      for (const [key, el] of Object.entries(textRefs.current)) {
+        if (el) {
+          result[key] = el.scrollHeight > el.clientHeight;
+        }
+      }
+      setOverflows(result);
+    };
+    // Wait for web fonts to load so text measurements are accurate
+    document.fonts.ready.then(measure);
+  }, []);
+
+  const setTextRef = useCallback(
+    (key: string) => (el: HTMLParagraphElement | null) => {
+      textRefs.current[key] = el;
+    },
+    [],
+  );
 
   const toggleExpand = (key: string) => {
     setExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -153,10 +176,13 @@ export default function ConsentScreen({ onAgree }: ConsentScreenProps) {
               const key = `${group.tag}-${card.title}`;
               const isExpanded = expanded[key] ?? false;
 
+              const canExpand = overflows[key] ?? false;
+
               return (
                 <div
                   key={key}
-                  className="bg-white border border-[#e6e7ed] rounded-[8px] p-4 flex gap-4 items-start"
+                  onClick={canExpand ? () => toggleExpand(key) : undefined}
+                  className={`bg-white border border-[#e6e7ed] rounded-[8px] p-4 flex gap-4 items-start ${canExpand ? "cursor-pointer" : ""}`}
                 >
                   {/* Icon */}
                   <div
@@ -175,6 +201,7 @@ export default function ConsentScreen({ onAgree }: ConsentScreenProps) {
                       {card.title}
                     </h3>
                     <p
+                      ref={setTextRef(key)}
                       className={`text-[12px] leading-5 text-[#2f345f] whitespace-pre-wrap ${
                         isExpanded ? "" : "line-clamp-3"
                       }`}
@@ -182,31 +209,36 @@ export default function ConsentScreen({ onAgree }: ConsentScreenProps) {
                     >
                       {card.body}
                     </p>
-                    <button
-                      onClick={() => toggleExpand(key)}
-                      className="self-start flex items-center gap-2 text-[14px] font-semibold leading-[22px] text-[#086a74] cursor-pointer focus-visible:outline-none"
-                      style={{ fontFamily: "var(--font-inter)" }}
-                    >
-                      {isExpanded ? "Less details" : "Full details"}
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        aria-hidden="true"
-                        className={`transition-transform duration-200 ${
-                          isExpanded ? "rotate-180" : ""
-                        }`}
+                    {canExpand && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleExpand(key);
+                        }}
+                        className="self-start flex items-center gap-2 text-[14px] font-semibold leading-[22px] text-[#086a74] cursor-pointer focus-visible:outline-none"
+                        style={{ fontFamily: "var(--font-inter)" }}
                       >
-                        <path
-                          d="M6 9L12 15L18 9"
-                          stroke="#086a74"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </button>
+                        {isExpanded ? "Less details" : "Full details"}
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          aria-hidden="true"
+                          className={`transition-transform duration-200 ${
+                            isExpanded ? "rotate-180" : ""
+                          }`}
+                        >
+                          <path
+                            d="M6 9L12 15L18 9"
+                            stroke="#086a74"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </button>
+                    )}
                   </div>
                 </div>
               );
