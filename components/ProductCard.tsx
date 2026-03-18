@@ -120,7 +120,7 @@ export default function ProductCard({
               <circle cx="8" cy="8" r="7" fill="#07073d" />
               <path d="M5 8l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <span className="text-[10px] font-semibold leading-3 text-[#575d84] self-start mt-1">
+            <span className="text-[12px] font-semibold leading-3 text-[#575d84] self-start mt-1">
               You&rsquo;re also eligible for
             </span>
           </div>

@@ -3,7 +3,7 @@ import type { Product } from "@/types";
 export const products: Product[] = [
   {
     id: "wegovy-pen",
-    name: "Wegovy",
+    name: "Wegovy FlexTouch",
     tagline: "Semaglutide injection pen",
     description:
       "A once-weekly injectable pen containing semaglutide, clinically proven to support significant weight loss when combined with diet and exercise.",
