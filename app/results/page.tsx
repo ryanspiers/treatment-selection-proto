@@ -4,22 +4,35 @@ import { useRouter } from "next/navigation";
 import { useQuiz } from "@/context/QuizContext";
 import { products } from "@/data/products";
 import { getRecommendation } from "@/lib/recommendation";
+import NavBar from "@/components/NavBar";
 import ProductCard from "@/components/ProductCard";
+import type { Product } from "@/types";
 
 export default function ResultsPage() {
   const router = useRouter();
-  const { answers, resetQuiz } = useQuiz();
+  const { answers } = useQuiz();
 
-  const recommendation = getRecommendation(answers, products);
+  // Wegovy is always the hero card for now
+  const hero = products.find((p) => p.id === "wegovy-pen") ?? products[0];
+  const alternatives = products.filter(
+    (p) => p.id !== hero.id && p.id !== "default"
+  );
 
-  function handleRetake() {
-    resetQuiz();
-    router.push("/");
+  function handleSelect(product: Product) {
+    router.push(`/plan?product=${product.id}`);
   }
 
   return (
-    <div className="max-w-[480px] mx-auto w-full px-5 py-8">
-      <ProductCard product={recommendation} onRetake={handleRetake} />
-    </div>
+    <>
+      <NavBar
+        title="Step 1 of 3: Consultation"
+        onBack={() => router.back()}
+      />
+      <ProductCard
+        product={hero}
+        alternatives={alternatives}
+        onSelect={handleSelect}
+      />
+    </>
   );
 }

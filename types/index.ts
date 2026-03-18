@@ -22,6 +22,13 @@ export interface Product {
   matchTags: string[];
   minScore: number;
   priority: number;
+  dose?: string;
+  price?: number;
+  originalPrice?: number;
+  planLabel?: string;
+  gradientFrom?: string;
+  tagColor?: string;
+  imageScale?: number;
 }
 
 export interface QuizState {

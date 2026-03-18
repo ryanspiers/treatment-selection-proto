@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Work_Sans, Inter } from "next/font/google";
+import Script from "next/script";
 import { QuizProvider } from "@/context/QuizContext";
 import "./globals.css";
 
@@ -44,6 +45,7 @@ export default function RootLayout({
             </div>
           </main>
         </QuizProvider>
+        <Script src="https://mcp.figma.com/mcp/html-to-design/capture.js" strategy="afterInteractive" />
       </body>
     </html>
   );
