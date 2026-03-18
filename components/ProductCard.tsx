@@ -205,43 +205,51 @@ export default function ProductCard({
         >
           Got a question?
         </h2>
-        {faqs.map((faq, index) => (
-          <div key={index} className="bg-[#f9f9f9] rounded-[4px]">
-            <button
-              onClick={() => toggleFaq(index)}
-              className="w-full flex items-center justify-between px-4 py-4 text-left cursor-pointer focus-visible:outline-none"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              <span className="text-[14px] font-semibold text-[#07073d] pr-4">
-                {faq.question}
-              </span>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                aria-hidden="true"
-                className={`shrink-0 transition-transform duration-200 ${openFaq === index ? "rotate-180" : ""}`}
-              >
-                <path
-                  d="M6 9L12 15L18 9"
-                  stroke="#07073d"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-            {openFaq === index && (
-              <p
-                className="text-[13px] leading-5 text-[#575d84] px-4 pb-4"
+        {faqs.map((faq, index) => {
+          const isOpen = openFaq === index;
+          return (
+            <div key={index} className="bg-[#f9f9f9] rounded-[4px]">
+              <button
+                onClick={() => toggleFaq(index)}
+                className="w-full flex items-center justify-between px-4 py-4 text-left cursor-pointer focus-visible:outline-none"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                {faq.answer}
-              </p>
-            )}
-          </div>
-        ))}
+                <span className="text-[14px] font-semibold text-[#07073d] pr-4">
+                  {faq.question}
+                </span>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                  className={`shrink-0 transition-transform duration-300 ease-in-out ${isOpen ? "rotate-180" : ""}`}
+                >
+                  <path
+                    d="M6 9L12 15L18 9"
+                    stroke="#07073d"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+              <div
+                className="grid transition-[grid-template-rows] duration-300 ease-in-out"
+                style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+              >
+                <div className="overflow-hidden">
+                  <p
+                    className="text-[13px] leading-5 text-[#575d84] px-4 pb-4"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    {faq.answer}
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
