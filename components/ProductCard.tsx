@@ -107,7 +107,7 @@ export default function ProductCard({
 
       {/* Other treatments section */}
       {alternatives.length > 0 && (
-        <div className="w-full pb-[74px] mt-3">
+        <div className="w-full pb-[24px] mt-3">
           {/* Header */}
           <div
             className="flex items-center gap-2 h-[114px] mb-[-74px] px-3 py-3 rounded-t-[8px]"
@@ -170,7 +170,7 @@ export default function ProductCard({
                       className="text-[10px] leading-3 text-[#575d84]"
                       style={{ fontFamily: "var(--font-inter)" }}
                     >
-                      1, 2 and 3 month plans
+                      Plans available
                     </span>
                   </div>
 
@@ -198,18 +198,18 @@ export default function ProductCard({
         </div>
       )}
       {/* FAQs */}
-      <div className="w-full flex flex-col gap-0 mt-3">
+      <div className="w-full flex flex-col gap-2 mt-3">
         <h2
-          className="text-[18px] font-bold leading-6 text-[#07073d] mb-3"
+          className="text-[18px] font-bold leading-6 text-[#07073d] mb-1"
           style={{ fontFamily: "var(--font-work-sans)" }}
         >
-          Frequently asked questions
+          Got a question?
         </h2>
         {faqs.map((faq, index) => (
-          <div key={index} className="border-b border-[#e6e7ed]">
+          <div key={index} className="bg-[#f9f9f9] rounded-[4px]">
             <button
               onClick={() => toggleFaq(index)}
-              className="w-full flex items-center justify-between py-4 text-left cursor-pointer focus-visible:outline-none"
+              className="w-full flex items-center justify-between px-4 py-4 text-left cursor-pointer focus-visible:outline-none"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <span className="text-[14px] font-semibold text-[#07073d] pr-4">
@@ -234,7 +234,7 @@ export default function ProductCard({
             </button>
             {openFaq === index && (
               <p
-                className="text-[13px] leading-5 text-[#575d84] pb-4"
+                className="text-[13px] leading-5 text-[#575d84] px-4 pb-4"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 {faq.answer}

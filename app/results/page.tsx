@@ -24,10 +24,7 @@ export default function ResultsPage() {
 
   return (
     <>
-      <NavBar
-        title="Step 1 of 3: Consultation"
-        onBack={() => router.back()}
-      />
+      <NavBar title="Step 1 of 3: Consultation" onBack={() => router.back()} />
       <ProductCard
         product={hero}
         alternatives={alternatives}

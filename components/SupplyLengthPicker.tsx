@@ -24,7 +24,7 @@ export default function SupplyLengthPicker({
   const selected = plans[selectedIndex];
 
   return (
-    <div className="flex flex-col gap-5 max-w-[480px] mx-auto w-full px-5 py-5">
+    <div className="flex flex-col gap-5 max-w-[480px] mx-auto w-full px-5 py-5 bg-white">
       {/* Heading */}
       <h1
         className="text-[24px] font-bold leading-8 text-[#07073d]"
