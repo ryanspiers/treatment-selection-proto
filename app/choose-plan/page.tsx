@@ -26,7 +26,7 @@ function ChoosePlanContent() {
 
   return (
     <>
-      <NavBar title="Step 3 of 3: Choose plan" onBack={() => router.back()} />
+      <NavBar onBack={() => router.back()} progress={1} />
       <PlanChooser
         product={product}
         months={months}

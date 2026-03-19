@@ -9,7 +9,7 @@ export default function ConsentPage() {
 
   return (
     <>
-      <NavBar title="Check in" onBack={() => router.back()} />
+      <NavBar onBack={() => router.back()} progress={0.33} />
       <ConsentScreen onAgree={() => router.push("/results")} />
     </>
   );

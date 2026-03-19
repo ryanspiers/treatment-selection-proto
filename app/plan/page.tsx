@@ -26,7 +26,7 @@ function PlanContent() {
 
   return (
     <>
-      <NavBar title="Step 2 of 3: Choose plan" onBack={() => router.back()} />
+      <NavBar onBack={() => router.back()} progress={0.66} />
       <SupplyLengthPicker
         product={product}
         plans={supplyPlans}

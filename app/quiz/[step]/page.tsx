@@ -64,7 +64,7 @@ export default function QuizStepPage({
 
   return (
     <>
-      <NavBar title={`Step ${stepNumber} of ${totalSteps}`} onBack={handleBack} />
+      <NavBar onBack={handleBack} progress={stepNumber / (totalSteps * 3)} />
       <QuestionCard
         question={question}
         selectedChoiceTag={selected?.tag ?? null}

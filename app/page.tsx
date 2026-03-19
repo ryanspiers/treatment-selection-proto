@@ -9,7 +9,7 @@ export default function HomePage() {
 
   return (
     <>
-      <NavBar title="Step 1 of 3: Consultation" onBack={() => {}} />
+      <NavBar onBack={() => {}} />
       <StartScreen onStart={() => router.push("/quiz/1")} />
     </>
   );
