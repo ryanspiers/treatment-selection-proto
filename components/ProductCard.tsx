@@ -96,18 +96,12 @@ export default function ProductCard({
           >
             Continue with {product.name}
           </button>
-          <span
-            className="text-[10px] leading-3 text-[#575d84] text-center"
-            style={{ fontFamily: "var(--font-inter)" }}
-          >
-            Per pen prices decreases with longer plans
-          </span>
         </div>
       </div>
 
       {/* Other treatments section */}
       {alternatives.length > 0 && (
-        <div className="w-full pb-[24px] mt-3">
+        <div className="w-full mt-3">
           {/* Header */}
           <div
             className="flex items-center gap-2 h-[114px] mb-[-74px] px-3 py-3 rounded-t-[8px]"
@@ -197,11 +191,53 @@ export default function ProductCard({
           </div>
         </div>
       )}
+      {/* Payment trust */}
+      <div
+        className="w-full bg-[#f9f9f9] rounded-[8px] flex flex-col gap-3 items-center px-3 py-4 mt-3"
+        style={{ fontFamily: "var(--font-inter)" }}
+      >
+        <div className="flex items-center gap-2">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/shield-icon.svg" alt="" width={16} height={16} />
+          <span className="text-[12px] leading-5 text-[#07073d]">
+            All payments are secure and encrypted
+          </span>
+        </div>
+        <div className="flex flex-col gap-4 items-center w-full">
+          <div className="flex gap-2 items-center">
+            {[
+              { file: "apple pay", label: "Apple Pay" },
+              { file: "google pay", label: "Google Pay" },
+              { file: "visa", label: "Visa" },
+              { file: "mastercard", label: "Mastercard" },
+              { file: "amex", label: "Amex" },
+              { file: "maestro", label: "Maestro" },
+            ].map((icon) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img key={icon.file} src={`/${icon.file}.svg`} alt={icon.label} className="w-8 h-8 object-contain" />
+            ))}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <div className="bg-[#ffb3c7] rounded-[4px] p-0.5">
+              <img src="/klarnabadge.svg" alt="Klarna" width={40} height={9} />
+            </div>
+          </div>
+          <div className="w-full bg-[#ffe5ec] rounded-[4px] flex items-center gap-3 p-3">
+            <div className="bg-[#ffb3c7] rounded-[4px] p-0.5 shrink-0">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/klarnabadge.svg" alt="Klarna" width={40} height={9} />
+            </div>
+            <span className="text-[12px] leading-5 text-[#07073d]">
+              Klarna now available on Phlo Clinic
+            </span>
+          </div>
+        </div>
+      </div>
+
       {/* FAQs */}
-      <div className="w-full flex flex-col gap-2 mt-3">
+      <div className="w-full flex flex-col gap-[9px] mt-3">
         <h2
-          className="text-[18px] font-bold leading-6 text-[#07073d] mb-1"
-          style={{ fontFamily: "var(--font-work-sans)" }}
+          className="text-[16px] font-semibold leading-6 text-[#07073d]"
+          style={{ fontFamily: "var(--font-inter)" }}
         >
           Got a question?
         </h2>

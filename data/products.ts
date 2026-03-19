@@ -37,7 +37,7 @@ export const products: Product[] = [
   },
   {
     id: "wegovy-tablet",
-    name: "Wegovy Tablet",
+    name: "Wegovy Pill",
     tagline: "Oral semaglutide tablet",
     description:
       "An oral tablet form of semaglutide for daily use, providing a needle-free option for weight management.",
@@ -49,8 +49,8 @@ export const products: Product[] = [
     price: 89,
     originalPrice: 119,
     planLabel: "As part of a 3-month plan",
-    gradientFrom: "rgb(220, 242, 255)",
-    tagColor: "#dcf2ff",
+    gradientFrom: "rgb(215, 222, 255)",
+    tagColor: "#D7DEFF",
     imageScale: 60,
   },
   {

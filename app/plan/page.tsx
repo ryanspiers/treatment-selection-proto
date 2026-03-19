@@ -31,6 +31,7 @@ function PlanContent() {
         product={product}
         plans={supplyPlans}
         onSelect={handlePlanSelect}
+        onChangeProduct={() => router.push("/results")}
       />
     </>
   );
