@@ -1,38 +1,51 @@
 export interface SupplyPlan {
   months: number;
   label: string;
-  pricePerMonth: number;
+  subtitle: string;
   totalPrice: number;
-  originalPerMonth?: number;
-  savingsLabel?: string;
-  badge?: string;
+  pricePerPen?: number;
+  badge?: {
+    text: string;
+    type: "success" | "info";
+  };
+  bullets: string[];
+  muted?: boolean;
   recommended?: boolean;
 }
 
 export const supplyPlans: SupplyPlan[] = [
   {
-    months: 1,
-    label: "1 month",
-    pricePerMonth: 119,
-    totalPrice: 119,
+    months: 3,
+    label: "3 months",
+    subtitle: "3 pens • 1 delivery",
+    totalPrice: 267,
+    pricePerPen: 89,
+    badge: { text: "Best value – lowest per pen price", type: "success" },
+    bullets: [
+      "Price locked for 3 months",
+      "No monthly reordering needed",
+    ],
+    recommended: true,
   },
   {
     months: 2,
     label: "2 months",
-    pricePerMonth: 99,
-    totalPrice: 198,
-    originalPerMonth: 119,
-    savingsLabel: "Save £40",
+    subtitle: "2 pens • 1 delivery",
+    totalPrice: 196,
+    pricePerPen: 98,
+    badge: { text: "Save £15 per pen vs 1 month plan", type: "info" },
+    bullets: [],
   },
   {
-    months: 3,
-    label: "3 months",
-    pricePerMonth: 89,
-    totalPrice: 267,
-    originalPerMonth: 119,
-    savingsLabel: "Save £90",
-    badge: "Best value",
-    recommended: true,
+    months: 1,
+    label: "1 month",
+    subtitle: "1 pen • 1 delivery",
+    totalPrice: 113,
+    bullets: [
+      "Re-order required every month",
+      "£24 more per pen compared to 3 month plan",
+    ],
+    muted: true,
   },
 ];
 

@@ -59,7 +59,7 @@ export default function SupplyLengthPicker({
         </div>
       </div>
 
-      {/* Month selector */}
+      {/* Month selector cards */}
       <div
         className="flex flex-col gap-2"
         style={{ fontFamily: "var(--font-inter)" }}
@@ -67,23 +67,15 @@ export default function SupplyLengthPicker({
         <span className="text-[12px] leading-5 text-[#2f345f]">
           Number of months supply
         </span>
-        <div className="flex gap-[11px]">
-          {plans.map((plan, i) => {
-            const isSelected = i === selectedIndex;
-            return (
-              <button
-                key={plan.months}
-                onClick={() => setSelectedIndex(i)}
-                className={`flex-1 flex items-center justify-center py-4 rounded-[4px] cursor-pointer text-[14px] leading-[22px] text-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#086a74] focus-visible:ring-offset-2 ${
-                  isSelected
-                    ? "bg-[#f1f8fc] border-[1.5px] border-[#086a74] font-semibold text-[#07073d]"
-                    : "bg-[#f9f9f9] border border-[#e6e7ed] font-normal text-[#575d84]"
-                }`}
-              >
-                {plan.months}
-              </button>
-            );
-          })}
+        <div className="flex flex-col gap-4">
+          {plans.map((plan, i) => (
+            <MonthCard
+              key={plan.months}
+              plan={plan}
+              isSelected={i === selectedIndex}
+              onClick={() => setSelectedIndex(i)}
+            />
+          ))}
         </div>
       </div>
 
@@ -97,7 +89,7 @@ export default function SupplyLengthPicker({
         </span>
         <div className="flex flex-col gap-2">
           {currentTreatmentPlans.map((tp) => (
-            <PlanCard key={tp.id} plan={tp} />
+            <TreatmentPlanCard key={tp.id} plan={tp} />
           ))}
         </div>
       </div>
@@ -116,7 +108,82 @@ export default function SupplyLengthPicker({
   );
 }
 
-function PlanCard({ plan }: { plan: TreatmentPlan }) {
+function MonthCard({
+  plan,
+  isSelected,
+  onClick,
+}: {
+  plan: SupplyPlan;
+  isSelected: boolean;
+  onClick: () => void;
+}) {
+  const textColor = plan.muted ? "text-[#575d84]" : "text-[#2f345f]";
+  const priceColor = plan.muted ? "text-[#575d84]" : "text-[#07073d]";
+
+  return (
+    <button
+      onClick={onClick}
+      className={`w-full flex flex-col gap-3 px-5 py-4 rounded-[8px] text-left cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#086a74] focus-visible:ring-offset-2 ${
+        isSelected
+          ? "bg-[#f1f8fc] border-2 border-[#086a74]"
+          : plan.muted
+            ? "bg-[#f9f9f9] border border-[#e6e7ed]"
+            : "bg-white border border-[#e6e7ed]"
+      }`}
+      style={{ fontFamily: "var(--font-inter)" }}
+    >
+      {/* Top row: label + pricing */}
+      <div className="flex items-start justify-between w-full">
+        <div className="flex flex-col gap-1">
+          <span className={`text-[14px] font-semibold leading-[22px] ${textColor}`}>
+            {plan.label}
+          </span>
+          <span className={`text-[12px] leading-5 ${textColor}`}>
+            {plan.subtitle}
+          </span>
+        </div>
+        <div className="flex flex-col items-end">
+          <div className="flex flex-col items-end">
+            <span className={`text-[10px] leading-3 ${textColor}`}>from</span>
+            <span className={`text-[16px] font-semibold leading-6 ${priceColor}`}>
+              £{plan.totalPrice}
+            </span>
+          </div>
+          {plan.pricePerPen && (
+            <span className="text-[12px] leading-5 text-[#575d84]">
+              £{plan.pricePerPen} /pen
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div className="w-full h-px bg-[#e6e7ed]" />
+
+      {/* Badge */}
+      {plan.badge && (
+        <span
+          className={`self-start inline-flex items-center gap-1 text-[12px] font-semibold px-2 py-0.5 rounded-full whitespace-nowrap ${
+            plan.badge.type === "success"
+              ? "bg-[#e2fbf0] text-[#007d42]"
+              : "bg-[#e9eefa] text-[#003d88]"
+          }`}
+        >
+          {plan.badge.text}
+        </span>
+      )}
+
+      {/* Bullet points */}
+      <ul className={`list-disc ml-[18px] text-[12px] leading-5 ${plan.muted ? "text-[#575d84]" : textColor}`}>
+        {plan.bullets.map((bullet, i) => (
+          <li key={i}>{bullet}</li>
+        ))}
+      </ul>
+    </button>
+  );
+}
+
+function TreatmentPlanCard({ plan }: { plan: TreatmentPlan }) {
   return (
     <div className="w-full">
       {/* Top section */}
