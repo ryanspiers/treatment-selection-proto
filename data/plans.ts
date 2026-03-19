@@ -58,82 +58,85 @@ export interface PenDose {
 export interface TreatmentPlan {
   id: string;
   name: string;
+  description: string;
+  icon: "flat" | "up";
   pricePerPen: number;
   totalPrice: number;
-  savingsLabel?: string;
   pens: PenDose[];
 }
-
-const doseColors: Record<string, string> = {
-  "2.5mg": "#58595b",
-  "5mg": "#402a5b",
-  "7.5mg": "#347e71",
-};
 
 export const treatmentPlans: Record<number, TreatmentPlan[]> = {
   1: [
     {
-      id: "maintenance-1",
-      name: "Maintenance plan",
-      pricePerPen: 149,
-      totalPrice: 149,
-      pens: [{ month: 1, dose: "2.5mg", color: doseColors["2.5mg"] }],
+      id: "dose-025-1",
+      name: "0.25mg",
+      description: "1 Wegovy FlexTouch Pen",
+      icon: "flat",
+      pricePerPen: 89,
+      totalPrice: 89,
+      pens: [{ month: 1, dose: "0.25mg", color: "#53c2ab" }],
     },
     {
-      id: "increasing-1",
-      name: "Increasing plan",
-      pricePerPen: 149,
-      totalPrice: 149,
-      pens: [{ month: 1, dose: "2.5mg", color: doseColors["2.5mg"] }],
+      id: "dose-05-1",
+      name: "0.5mg",
+      description: "1 Wegovy FlexTouch Pen",
+      icon: "up",
+      pricePerPen: 147,
+      totalPrice: 139,
+      pens: [{ month: 1, dose: "0.5mg", color: "#a0486b" }],
     },
   ],
   2: [
     {
-      id: "maintenance-2",
-      name: "Maintenance plan",
-      pricePerPen: 109,
-      totalPrice: 436,
-      savingsLabel: "Save £40",
+      id: "steady-2",
+      name: "Steady plan",
+      description: "For users with a steady weight loss",
+      icon: "flat",
+      pricePerPen: 89,
+      totalPrice: 178,
       pens: [
-        { month: 1, dose: "2.5mg", color: doseColors["2.5mg"] },
-        { month: 2, dose: "2.5mg", color: doseColors["2.5mg"] },
+        { month: 1, dose: "0.25mg", color: "#53c2ab" },
+        { month: 2, dose: "0.25mg", color: "#53c2ab" },
       ],
     },
     {
       id: "increasing-2",
       name: "Increasing plan",
+      description: "For users wanting the best bang for their buck",
+      icon: "up",
       pricePerPen: 129,
-      totalPrice: 516,
-      savingsLabel: "Save £80",
+      totalPrice: 258,
       pens: [
-        { month: 1, dose: "2.5mg", color: doseColors["2.5mg"] },
-        { month: 2, dose: "5mg", color: doseColors["5mg"] },
+        { month: 1, dose: "0.25mg", color: "#53c2ab" },
+        { month: 2, dose: "0.5mg", color: "#a0486b" },
       ],
     },
   ],
   3: [
     {
-      id: "maintenance-3",
-      name: "Maintenance plan",
-      pricePerPen: 92.33,
-      totalPrice: 597,
-      savingsLabel: "Save £80",
+      id: "steady-3",
+      name: "Steady plan",
+      description: "For users with a steady weight loss",
+      icon: "flat",
+      pricePerPen: 89,
+      totalPrice: 267,
       pens: [
-        { month: 1, dose: "2.5mg", color: doseColors["2.5mg"] },
-        { month: 2, dose: "2.5mg", color: doseColors["2.5mg"] },
-        { month: 3, dose: "2.5mg", color: doseColors["2.5mg"] },
+        { month: 1, dose: "0.25mg", color: "#53c2ab" },
+        { month: 2, dose: "0.25mg", color: "#53c2ab" },
+        { month: 3, dose: "0.25mg", color: "#53c2ab" },
       ],
     },
     {
       id: "increasing-3",
       name: "Increasing plan",
-      pricePerPen: 119,
-      totalPrice: 798,
-      savingsLabel: "Save £198",
+      description: "For users wanting the best bang for their buck",
+      icon: "up",
+      pricePerPen: 147,
+      totalPrice: 498,
       pens: [
-        { month: 1, dose: "2.5mg", color: doseColors["2.5mg"] },
-        { month: 2, dose: "5mg", color: doseColors["5mg"] },
-        { month: 3, dose: "7.5mg", color: doseColors["7.5mg"] },
+        { month: 1, dose: "0.25mg", color: "#53c2ab" },
+        { month: 2, dose: "0.5mg", color: "#a0486b" },
+        { month: 3, dose: "1mg", color: "#ac784c" },
       ],
     },
   ],

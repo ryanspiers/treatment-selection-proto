@@ -3,15 +3,15 @@
 import { Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { products } from "@/data/products";
-import { supplyPlans } from "@/data/plans";
 import NavBar from "@/components/NavBar";
-import SupplyLengthPicker from "@/components/SupplyLengthPicker";
-import type { SupplyPlan } from "@/data/plans";
+import PlanChooser from "@/components/PlanChooser";
+import type { TreatmentPlan } from "@/data/plans";
 
-function PlanContent() {
+function ChoosePlanContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const productId = searchParams.get("product");
+  const months = Number(searchParams.get("months")) || 3;
 
   const product = products.find((p) => p.id === productId);
 
@@ -20,27 +20,28 @@ function PlanContent() {
     return null;
   }
 
-  function handlePlanSelect(plan: SupplyPlan) {
-    router.push(`/choose-plan?product=${product!.id}&months=${plan.months}`);
+  function handlePlanSelect(plan: TreatmentPlan) {
+    console.log("Selected plan:", plan.name, plan.totalPrice, "for", product!.name);
   }
 
   return (
     <>
-      <NavBar title="Step 2 of 3: Choose plan" onBack={() => router.back()} />
-      <SupplyLengthPicker
+      <NavBar title="Step 3 of 3: Choose plan" onBack={() => router.back()} />
+      <PlanChooser
         product={product}
-        plans={supplyPlans}
-        onSelect={handlePlanSelect}
+        months={months}
         onChangeProduct={() => router.push("/results")}
+        onChangeMonths={() => router.back()}
+        onSelect={handlePlanSelect}
       />
     </>
   );
 }
 
-export default function PlanPage() {
+export default function ChoosePlanPage() {
   return (
     <Suspense>
-      <PlanContent />
+      <ChoosePlanContent />
     </Suspense>
   );
 }
