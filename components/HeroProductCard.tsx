@@ -32,8 +32,8 @@ export default function HeroProductCard({ product }: HeroProductCardProps) {
         style={{ fontFamily: "var(--font-inter)" }}
       >
         <div className="flex items-center justify-between px-5">
-          <span className="text-[12px] leading-3 text-[#2f345f]">
-            Medication
+          <span className="text-[10px] leading-3 text-[#2f345f]">
+            Treatment
           </span>
           <span className="text-[14px] leading-[22px] font-semibold text-[#07073d]">
             {product.name}
@@ -41,10 +41,10 @@ export default function HeroProductCard({ product }: HeroProductCardProps) {
         </div>
         <div className="flex items-center justify-between px-5">
           <span className="text-[10px] leading-3 text-[#2f345f]">
-            Plans available
+            Supply available
           </span>
           <span className="text-[14px] leading-[22px] font-semibold text-[#07073d]">
-            1, 2 or 3 months
+            1 or 2 months
           </span>
         </div>
       </div>

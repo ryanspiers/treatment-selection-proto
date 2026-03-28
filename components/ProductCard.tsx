@@ -73,9 +73,6 @@ export default function ProductCard({
             <span className="text-[16px] text-[#01011a]">
               <span className="font-semibold">from £{product.price}</span> per pen
             </span>
-            <span className="text-[12px] leading-5 text-[#07073d]">
-              As part of a 3-month plan
-            </span>
           </div>
           <div
             className="flex items-center justify-center gap-1"
@@ -96,6 +93,12 @@ export default function ProductCard({
           >
             Continue with {product.name}
           </button>
+          <span
+            className="text-[10px] leading-3 text-[#575d84] text-center"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            Per pen prices decreases with longer supplies
+          </span>
         </div>
       </div>
 
@@ -158,13 +161,13 @@ export default function ProductCard({
                       className="text-[12px] leading-5 text-[#2f345f]"
                       style={{ fontFamily: "var(--font-inter)" }}
                     >
-                      <span className="font-semibold text-[#07073d]">from £149</span> per pen
+                      <span className="font-semibold text-[#07073d]">from £{alt.price}</span> per pen
                     </span>
                     <span
                       className="text-[10px] leading-3 text-[#575d84]"
                       style={{ fontFamily: "var(--font-inter)" }}
                     >
-                      Plans available
+                      1 or 2 month supplies
                     </span>
                   </div>
 

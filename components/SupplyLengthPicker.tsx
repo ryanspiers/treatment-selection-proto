@@ -9,6 +9,7 @@ interface SupplyLengthPickerProps {
   plans: SupplyPlan[];
   onSelect: (plan: SupplyPlan) => void;
   onChangeProduct?: () => void;
+  showProductStrip?: boolean;
 }
 
 export default function SupplyLengthPicker({
@@ -16,53 +17,50 @@ export default function SupplyLengthPicker({
   plans,
   onSelect,
   onChangeProduct,
+  showProductStrip = false,
 }: SupplyLengthPickerProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const selected = selectedIndex !== null ? plans[selectedIndex] : null;
 
   return (
-    <div className="flex flex-col gap-6 max-w-[480px] mx-auto w-full px-5 py-5 bg-white">
+    <div className="flex flex-col gap-8 max-w-[480px] mx-auto w-full px-5 py-5 bg-white">
       {/* Heading */}
       <h1
         className="text-[24px] font-bold leading-8 text-[#07073d]"
         style={{ fontFamily: "var(--font-work-sans)" }}
       >
-        Choose your plan
+        How many months?
       </h1>
 
       {/* Product context strip */}
-      <div
-        className="w-full rounded-[12px] overflow-hidden p-5"
-        style={{
-          backgroundImage: `linear-gradient(178deg, ${product.gradientFrom || "rgb(220,242,255)"} 7%, white 93%)`,
-        }}
-      >
+      {showProductStrip && (
         <div
-          className="backdrop-blur-sm bg-white/60 border border-[#e6e7ed] rounded-[8px] flex items-center justify-between px-5 py-3"
-          style={{ fontFamily: "var(--font-inter)" }}
+          className="w-full rounded-[12px] overflow-hidden p-5"
+          style={{
+            backgroundImage: `linear-gradient(178deg, ${product.gradientFrom || "rgb(220,242,255)"} 7%, white 93%)`,
+          }}
         >
-          <span className="text-[14px] font-semibold leading-[22px] text-[#07073d]">
-            {product.name}
-          </span>
-          <button
-            onClick={onChangeProduct}
-            className="text-[12px] leading-5 text-[#086a74] cursor-pointer focus-visible:outline-none"
+          <div
+            className="backdrop-blur-sm bg-white/60 border border-[#e6e7ed] rounded-[8px] flex items-center justify-between px-5 py-3"
+            style={{ fontFamily: "var(--font-inter)" }}
           >
-            Change
-          </button>
+            <span className="text-[14px] font-semibold leading-[22px] text-[#07073d]">
+              {product.name}
+            </span>
+            <button
+              onClick={onChangeProduct}
+              className="text-[12px] leading-5 text-[#086a74] cursor-pointer focus-visible:outline-none"
+            >
+              Change
+            </button>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Month selector cards */}
-      <div
-        className="flex flex-col gap-2"
-        style={{ fontFamily: "var(--font-inter)" }}
-      >
-        <span className="text-[12px] leading-5 text-[#2f345f]">
-          Number of months supply
-        </span>
-        <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-[20px]">
           {plans.map((plan, i) => (
             <MonthCard
               key={plan.months}
@@ -72,10 +70,41 @@ export default function SupplyLengthPicker({
             />
           ))}
         </div>
+
+        {/* Pharmacist quote card */}
+        <div className="px-3">
+          <div
+            className="w-full bg-[#def4f7] rounded-[8px] flex flex-col gap-3 px-3 py-4"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            <div className="flex gap-3 items-center">
+              <div className="w-10 h-10 rounded-full bg-white shrink-0 overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/dennis.png"
+                  alt="Dennis Ouko"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="text-[10px] leading-3 font-semibold text-[#07073d]">
+                  Dennis Ouko GPhC
+                </span>
+                <span className="text-[10px] leading-3 font-semibold text-[#2f345f]">
+                  Superintendent Pharmacist
+                </span>
+              </div>
+            </div>
+            <span className="text-[12px] leading-5 text-[#07073d]">
+              &ldquo;Some guidance from Dennis about how patients that choose a
+              bundle tend to lose my weight than those that choose one pen&rdquo;
+            </span>
+          </div>
+        </div>
       </div>
 
       {/* CTA */}
-      <div className="flex flex-col gap-2 items-center">
+      <div className="flex flex-col items-center">
         <button
           onClick={() => selected && onSelect(selected)}
           disabled={!selected}
@@ -102,68 +131,53 @@ function MonthCard({
   isSelected: boolean;
   onClick: () => void;
 }) {
-  const textColor = plan.muted ? "text-[#575d84]" : "text-[#2f345f]";
-  const priceColor = plan.muted ? "text-[#575d84]" : "text-[#07073d]";
-
   return (
     <button
       onClick={onClick}
-      className={`w-full flex flex-col gap-3 px-5 py-4 rounded-[8px] text-left cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#086a74] focus-visible:ring-offset-2 ${
+      className={`relative w-full flex items-start justify-between px-6 py-4 rounded-[8px] text-left cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#086a74] focus-visible:ring-offset-2 ${
         isSelected
           ? "bg-[#f1f8fc] border-2 border-[#086a74]"
-          : plan.muted
-            ? "bg-[#f9f9f9] border border-[#e6e7ed]"
-            : "bg-white border border-[#e6e7ed]"
+          : "bg-white border border-[#e6e7ed]"
       }`}
       style={{ fontFamily: "var(--font-inter)" }}
     >
-      {/* Top row: label + pricing */}
-      <div className="flex items-start justify-between w-full">
-        <div className="flex flex-col gap-1">
-          <span className={`text-[14px] font-semibold leading-[22px] ${textColor}`}>
-            {plan.label}
-          </span>
-          <span className={`text-[12px] leading-5 ${textColor}`}>
-            {plan.subtitle}
-          </span>
-        </div>
-        <div className="flex flex-col items-end">
-          <div className="flex flex-col items-end">
-            <span className={`text-[10px] leading-3 ${textColor}`}>from</span>
-            <span className={`text-[16px] font-semibold leading-6 ${priceColor}`}>
-              £{plan.totalPrice}
-            </span>
-          </div>
-          {plan.pricePerPen && (
-            <span className="text-[12px] leading-5 text-[#575d84]">
-              £{plan.pricePerPen} /pen
-            </span>
-          )}
-        </div>
-      </div>
-
-      {/* Divider */}
-      <div className="w-full h-px bg-[#e6e7ed]" />
-
-      {/* Badge */}
-      {plan.badge && (
-        <span
-          className={`self-start inline-flex items-center gap-1 text-[12px] font-semibold px-2 py-0.5 rounded-full whitespace-nowrap ${
-            plan.badge.type === "success"
-              ? "bg-[#e2fbf0] text-[#007d42]"
-              : "bg-[#e9eefa] text-[#003d88]"
-          }`}
-        >
-          {plan.badge.text}
+      {/* "Most popular" badge */}
+      {plan.recommended && (
+        <span className="absolute top-[-13px] right-[24px] bg-[#086a74] text-white text-[12px] font-medium px-2 py-[3px] rounded-[4px] whitespace-nowrap">
+          Most popular
         </span>
       )}
 
-      {/* Bullet points */}
-      <ul className={`list-disc ml-[18px] text-[12px] leading-5 ${plan.muted ? "text-[#575d84]" : textColor}`}>
-        {plan.bullets.map((bullet, i) => (
-          <li key={i}>{bullet}</li>
-        ))}
-      </ul>
+      {/* Left: label + subtitle */}
+      <div className="flex flex-col gap-1">
+        <span
+          className={`text-[14px] font-semibold leading-[22px] ${
+            isSelected ? "text-[#2f345f]" : "text-[#2f345f]"
+          }`}
+        >
+          {plan.label}
+        </span>
+        <span className="text-[12px] leading-5 text-[#2f345f]">
+          {plan.subtitle}
+        </span>
+      </div>
+
+      {/* Right: pricing */}
+      <div className="flex flex-col items-end shrink-0">
+        <span className="text-[10px] leading-3 text-[#2f345f]">from</span>
+        <span
+          className={`text-[16px] font-semibold leading-6 ${
+            isSelected ? "text-[#07073d]" : "text-[#2f345f]"
+          }`}
+        >
+          £{plan.totalPrice}
+        </span>
+        {plan.pricePerPen && (
+          <span className="text-[12px] leading-5 text-[#575d84]">
+            £{plan.pricePerPen} /pen
+          </span>
+        )}
+      </div>
     </button>
   );
 }

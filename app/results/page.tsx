@@ -15,7 +15,7 @@ export default function ResultsPage() {
   // Wegovy is always the hero card for now
   const hero = products.find((p) => p.id === "wegovy-pen") ?? products[0];
   const alternatives = products.filter(
-    (p) => p.id !== hero.id && p.id !== "default"
+    (p) => p.id !== hero.id && p.id !== "default" && p.id.includes("pen")
   );
 
   function handleSelect(product: Product) {

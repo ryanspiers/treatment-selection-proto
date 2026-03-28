@@ -36,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${workSans.variable} ${inter.variable} bg-[#f9f9f9]`}
+        className={`${workSans.variable} ${inter.variable} bg-white`}
       >
         <QuizProvider>
           <main className="min-h-dvh flex flex-col">
