@@ -3,6 +3,18 @@
 import { useState } from "react";
 import type { Product } from "@/types";
 import type { SupplyPlan } from "@/data/plans";
+import PricingModal from "./PricingModal";
+
+function InfoIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M7.33 4.67h1.34V6H7.33V4.67ZM7.33 7.33h1.34v4H7.33v-4ZM8 1.33A6.67 6.67 0 1 0 14.67 8 6.68 6.68 0 0 0 8 1.33Zm0 12A5.33 5.33 0 1 1 13.33 8 5.34 5.34 0 0 1 8 13.33Z"
+        fill="#003d88"
+      />
+    </svg>
+  );
+}
 
 interface SupplyLengthPickerProps {
   product: Product;
@@ -20,6 +32,7 @@ export default function SupplyLengthPicker({
   showProductStrip = false,
 }: SupplyLengthPickerProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [showPricingModal, setShowPricingModal] = useState(false);
 
   const selected = selectedIndex !== null ? plans[selectedIndex] : null;
 
@@ -69,6 +82,20 @@ export default function SupplyLengthPicker({
               onClick={() => setSelectedIndex(i)}
             />
           ))}
+
+          {/* How does pricing work? */}
+          <div className="flex justify-center">
+            <button
+              onClick={() => setShowPricingModal(true)}
+              className="flex items-center gap-2 cursor-pointer focus-visible:outline-none"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              <span className="text-[14px] font-semibold leading-[22px] text-[#003d88] underline">
+                How does pricing work?
+              </span>
+              <InfoIcon />
+            </button>
+          </div>
         </div>
 
         {/* Pharmacist quote card */}
@@ -118,6 +145,8 @@ export default function SupplyLengthPicker({
           {selected ? `See ${selected.months} month plans` : "Continue"}
         </button>
       </div>
+
+      <PricingModal open={showPricingModal} onClose={() => setShowPricingModal(false)} />
     </div>
   );
 }
