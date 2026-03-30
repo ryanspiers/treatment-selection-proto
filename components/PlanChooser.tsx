@@ -145,8 +145,8 @@ export default function PlanChooser({
 
       {/* Sticky bottom drawer */}
       <div className="sticky bottom-0 w-full max-w-[480px] mx-auto border-t border-[#e6e7ed] bg-white">
-        {/* Total + Savings */}
-        <div className="flex flex-col gap-2 px-5 pt-4">
+        {/* Total + Savings — hidden until a plan is selected */}
+        {selectedPlan && <div className="flex flex-col gap-2 px-5 pt-4">
           <div className="flex items-center justify-between">
             <span
               className="text-[20px] font-semibold leading-7 text-[#07073d]"
@@ -175,7 +175,7 @@ export default function PlanChooser({
               {selectedPlan ? `£${selectedPlan.pens.length * 20}` : "–"}
             </span>
           </div>
-        </div>
+        </div>}
 
         {/* Confirm button */}
         <div className="p-5">
