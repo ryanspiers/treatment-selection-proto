@@ -10,7 +10,7 @@ export default function ConsentPage() {
   return (
     <>
       <NavBar onBack={() => router.back()} progress={0.33} />
-      <ConsentScreen onAgree={() => router.push("/results")} />
+      <ConsentScreen onAgree={() => router.push("/choose-treatment")} />
     </>
   );
 }

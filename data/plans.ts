@@ -155,3 +155,138 @@ export const treatmentPlans: Record<number, TreatmentPlan[]> = {
     },
   ],
 };
+
+/* ───────────────────────────────────────────────
+   Dose options — used by the new DoseSelector
+   ─────────────────────────────────────────────── */
+
+export interface DoseOption {
+  id: string;
+  label: string;
+  packSize?: number;
+  months: number;
+  price: number;
+  originalPrice?: number;
+  colors: string[];
+  badge?: string;
+  /** If true, only shown after "See all options" is tapped */
+  extraOption?: boolean;
+  /** Green savings callout, e.g. "Save £30" */
+  savingsText?: string;
+}
+
+export const doseOptions: Record<string, DoseOption[]> = {
+  "mounjaro-kwikpen": [
+    {
+      id: "mj-25-1",
+      label: "2.5mg",
+      months: 1,
+      price: 169,
+      colors: ["#58595B"],
+      extraOption: true,
+    },
+    {
+      id: "mj-5-1",
+      label: "5mg",
+      months: 1,
+      price: 199,
+      colors: ["#402A5B"],
+      extraOption: true,
+    },
+    {
+      id: "mj-75-1",
+      label: "7.5mg",
+      months: 1,
+      price: 249,
+      colors: ["#347E71"],
+      extraOption: true,
+    },
+    {
+      id: "mj-10-1",
+      label: "10mg",
+      months: 1,
+      price: 279,
+      colors: ["#BB2C7E"],
+    },
+    {
+      id: "mj-10-2",
+      label: "10mg",
+      packSize: 2,
+      months: 2,
+      price: 550,
+      originalPrice: 558,
+      colors: ["#BB2C7E"],
+      badge: "Bundle deal",
+    },
+    {
+      id: "mj-10-3",
+      label: "10mg",
+      packSize: 3,
+      months: 3,
+      price: 650,
+      originalPrice: 837,
+      colors: ["#BB2C7E"],
+      badge: "Bundle deal",
+    },
+    {
+      id: "mj-10-125-2",
+      label: "10mg + 12.5mg",
+      packSize: 2,
+      months: 2,
+      price: 565,
+      originalPrice: 578,
+      colors: ["#BB2C7E", "#3774BA"],
+      badge: "Bundle deal",
+    },
+    {
+      id: "mj-125-1",
+      label: "12.5mg",
+      months: 1,
+      price: 299,
+      colors: ["#3774BA"],
+    },
+    {
+      id: "mj-125-2",
+      label: "12.5mg",
+      packSize: 2,
+      months: 2,
+      price: 592,
+      originalPrice: 598,
+      colors: ["#3774BA"],
+      badge: "Bundle deal",
+    },
+    {
+      id: "mj-125-3",
+      label: "12.5mg",
+      packSize: 3,
+      months: 3,
+      price: 692,
+      originalPrice: 897,
+      colors: ["#3774BA"],
+      badge: "Bundle deal",
+    },
+  ],
+  "wegovy-pen": [
+    {
+      id: "wg-025-1",
+      label: "0.25mg",
+      months: 1,
+      price: 119,
+      colors: ["#53c2ab"],
+    },
+    {
+      id: "wg-05-1",
+      label: "0.5mg",
+      months: 1,
+      price: 139,
+      colors: ["#a0486b"],
+    },
+    {
+      id: "wg-1-1",
+      label: "1mg",
+      months: 1,
+      price: 169,
+      colors: ["#ac784c"],
+    },
+  ],
+};
