@@ -173,6 +173,8 @@ export interface DoseOption {
   extraOption?: boolean;
   /** Green savings callout, e.g. "Save £30" */
   savingsText?: string;
+  /** Disclaimer shown when card is selected */
+  disclaimer?: string;
 }
 
 export const doseOptions: Record<string, DoseOption[]> = {
@@ -227,6 +229,7 @@ export const doseOptions: Record<string, DoseOption[]> = {
       originalPrice: 837,
       colors: ["#BB2C7E"],
       badge: "Bundle deal",
+      disclaimer: "This bundle is for patients that are stable and comfortable with 3 months of the same dose.",
     },
     {
       id: "mj-10-125-2",
@@ -264,6 +267,7 @@ export const doseOptions: Record<string, DoseOption[]> = {
       originalPrice: 897,
       colors: ["#3774BA"],
       badge: "Bundle deal",
+      disclaimer: "This bundle is for patients that are stable and comfortable with 3 months of the same dose.",
     },
   ],
   "wegovy-pen": [
