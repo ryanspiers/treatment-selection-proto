@@ -85,86 +85,73 @@ export default function DoseSelector({
 
               {/* Dose cards */}
               <div className="flex flex-col gap-3">
-                {visibleOptions.map((option) => {
-                  const isSelected = option.id === selectedId;
-                  const showDisclaimer = isSelected && !!option.disclaimer;
+                {visibleOptions.map((option) => (
+                  <button
+                    key={option.id}
+                    onClick={() => setSelectedId(option.id)}
+                    className={`w-full flex items-center h-[76px] rounded-[8px] overflow-clip text-left cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#086a74] focus-visible:ring-offset-2 ${
+                      option.id === selectedId
+                        ? "ring-2 ring-[#086a74]"
+                        : ""
+                    }`}
+                  >
+                    {/* Colour tag */}
+                    <ColorTag colors={option.colors} />
 
-                  return (
-                    <button
-                      key={option.id}
-                      onClick={() => setSelectedId(option.id)}
-                      className={`w-full flex min-h-[76px] rounded-[8px] overflow-clip text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#086a74] focus-visible:ring-offset-2 ${
-                        isSelected
-                          ? "border-2 border-[#086a74] bg-[#f1f8fc]"
-                          : "border border-[#e6e7ed] bg-white"
+                    {/* Main content */}
+                    <div
+                      className={`flex-1 flex items-center gap-4 h-full p-4 border border-l-0 border-[#e6e7ed] rounded-r-[8px] ${
+                        option.id === selectedId ? "bg-[#f1f8fc]" : "bg-white"
                       }`}
+                      style={{ fontFamily: "var(--font-inter)" }}
                     >
-                      {/* Colour tag */}
-                      <ColorTag colors={option.colors} />
-
-                      {/* Main content */}
-                      <div
-                        className="flex-1 flex flex-col gap-3 p-4"
-                        style={{ fontFamily: "var(--font-inter)" }}
-                      >
-                        {/* Top row: info + price */}
-                        <div className="flex items-center gap-4">
-                          {/* Left: dose + supply info */}
-                          <div className="flex-1 flex flex-col gap-0.5">
-                            <span className="text-[14px] font-semibold leading-[22px] text-[#07073d]">
-                              {option.label}
-                              {option.packSize && (
-                                <span className="font-normal">
-                                  {" "}
-                                  ({option.packSize} pack)
-                                </span>
-                              )}
+                      {/* Left: dose + supply info */}
+                      <div className="flex-1 flex flex-col gap-0.5">
+                        <span className="text-[14px] font-semibold leading-[22px] text-[#07073d]">
+                          {option.label}
+                          {option.packSize && (
+                            <span className="font-normal">
+                              {" "}
+                              ({option.packSize} pack)
                             </span>
-                            <div className="flex items-center gap-2">
-                              <span className="text-[10px] leading-3 text-[#2f345f]">
-                                {option.months} month{option.months > 1 ? "s" : ""}{" "}
-                                supply
-                              </span>
-                              {option.badge && (
-                                <span className="inline-flex items-center bg-[#e2fbf0] border border-[#007d42] rounded px-1.5 py-0.5 text-[10px] font-medium text-[#007d42] leading-normal">
-                                  {option.badge}
-                                </span>
-                              )}
-                            </div>
-                          </div>
-
-                          {/* Right: price + savings */}
-                          <div className="flex flex-col items-end gap-2 shrink-0">
-                            <span className="text-[14px] leading-6 text-[#07073d]">
-                              £{option.price.toFixed(2)}
+                          )}
+                        </span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[10px] leading-3 text-[#2f345f]">
+                            {option.months} month{option.months > 1 ? "s" : ""}{" "}
+                            supply
+                          </span>
+                          {option.badge && (
+                            <span className="inline-flex items-center bg-[#e2fbf0] border border-[#007d42] rounded px-1.5 py-0.5 text-[10px] font-medium text-[#007d42] leading-normal">
+                              {option.badge}
                             </span>
-                            {option.originalPrice && (
-                              <span className="text-[12px] leading-5 text-[#989eb5] line-through">
-                                £{option.originalPrice.toFixed(2)}
-                              </span>
-                            )}
-                            {option.savingsText && (
-                              <span className="inline-flex items-center gap-1 text-[10px] leading-3 text-[#007d42]">
-                                {option.savingsText}
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M6.5 3.5h-2v1h2c.28 0 .5.22.5.5s-.22.5-.5.5h-1v-1H4.5v1H4v1h.5v1h-1v1h1v.5h1v-.5h2v-1h-2c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h1v1h1v-1h.5v-1H7v-1h1v-1H7v-.5h-1v.5H6Z" fill="#007d42"/>
-                                  <path d="M6 1C3.24 1 1 3.24 1 6s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5Zm0 9c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4Z" fill="#007d42"/>
-                                </svg>
-                              </span>
-                            )}
-                          </div>
+                          )}
                         </div>
+                      </div>
 
-                        {/* Disclaimer — only on selected 3-pack */}
-                        {showDisclaimer && (
-                          <p className="text-[10px] leading-3 text-[#2f345f]">
-                            {option.disclaimer}
-                          </p>
+                      {/* Right: price + savings */}
+                      <div className="flex flex-col items-end gap-2 shrink-0">
+                        <span className="text-[14px] leading-6 text-[#07073d]">
+                          £{option.price.toFixed(2)}
+                        </span>
+                        {option.originalPrice && (
+                          <span className="text-[12px] leading-5 text-[#989eb5] line-through">
+                            £{option.originalPrice.toFixed(2)}
+                          </span>
+                        )}
+                        {option.savingsText && (
+                          <span className="inline-flex items-center gap-1 text-[10px] leading-3 text-[#007d42]">
+                            {option.savingsText}
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M6.5 3.5h-2v1h2c.28 0 .5.22.5.5s-.22.5-.5.5h-1v-1H4.5v1H4v1h.5v1h-1v1h1v.5h1v-.5h2v-1h-2c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h1v1h1v-1h.5v-1H7v-1h1v-1H7v-.5h-1v.5H6Z" fill="#007d42"/>
+                              <path d="M6 1C3.24 1 1 3.24 1 6s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5Zm0 9c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4Z" fill="#007d42"/>
+                            </svg>
+                          </span>
                         )}
                       </div>
-                    </button>
-                  );
-                })}
+                    </div>
+                  </button>
+                ))}
               </div>
             </div>
           </div>
@@ -245,11 +232,11 @@ export default function DoseSelector({
 function ColorTag({ colors }: { colors: string[] }) {
   if (colors.length === 1) {
     return (
-      <div className="w-2 self-stretch shrink-0" style={{ backgroundColor: colors[0] }} />
+      <div className="w-2 h-full shrink-0" style={{ backgroundColor: colors[0] }} />
     );
   }
   return (
-    <div className="w-2 self-stretch shrink-0 flex flex-col">
+    <div className="w-2 h-full shrink-0 flex flex-col">
       {colors.map((color, i) => (
         <div key={i} className="flex-1" style={{ backgroundColor: color }} />
       ))}
